@@ -1,0 +1,8 @@
+/files/
+/models/
+/venv/
+*.env
+*.session
+*.wav
+*.json
+trial.py
