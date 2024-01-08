@@ -21,7 +21,7 @@ class Speech():
         file_path = 'output.wav'
 
         self.tts.tts_to_file(
-            text=input, file_path=file_path, speaker_wav=['models/one.wav', 'models/two.wav', 'models/three.wav', 'models/four.wav', 'models/five.wav', 'models/six.wav', 'models/seven.wav', 'models/eight.wav', 'models/nine.wav', 'models/ten.wav'], split_sentences=True)
+            text=input, file_path=file_path, split_sentences=True)
 
         # Play the synthesized speech using playsound
         sound = AudioSegment.from_wav(file_path)

@@ -1,14 +1,17 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer
 from db_calls import DatabaseCalls
+from dotenv import load_dotenv
 import transformers
 import torch
+import os
 
 
 class Respond():
     def __init__(self) -> None:
+        load_dotenv('config.env')
 
-        self.model_name = "ericzzz/falcon-rw-1b-instruct-openorca"
-
+        # Access  key
+        self.model_name = os.getenv('model_name')
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         self.pipeline = transformers.pipeline(
             'text-generation',
@@ -20,7 +23,7 @@ class Respond():
         self.db = DatabaseCalls("dialog_history")
 
     def generator(self, prompt):
-        system_message = 'You are a personal virtual assistant. Your name is Saba. Your job is to provide help abreham. Give short answers.'
+        system_message = os.getenv("system_message")
         inst = f'<SYS> {system_message} <INST> {prompt} <RESP> '
 
         response = self.pipeline(
