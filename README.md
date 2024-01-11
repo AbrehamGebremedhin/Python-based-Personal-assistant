@@ -7,11 +7,12 @@ Intent Classification: Uses a custom intent classification module to identify th
 API Integration: Incorporates external APIs for fetching weather information and movie details.
 Web Browsing: Allows the user to perform web searches and open web pages using the Brave browser.
 Database Interaction: Logs user commands and their corresponding intents into a database for future analysis.
-Message Sending: Can send messages, possibly via Telegram, based on specific commands.
+Message Sending: Can send messages via Telegram, based on specific commands.
 Volume Control: Supports speaker volume control, including muting and unmuting.
 Summarization: Provides summarization functionality for specified tasks.
 
 **To get Started**
+
 1. python -m venv venv
 2. pip install -r requirements.txt
 3. python main.py
