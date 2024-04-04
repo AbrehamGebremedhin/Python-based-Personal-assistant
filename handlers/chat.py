@@ -1,5 +1,5 @@
 from transformers import AutoTokenizer
-from db_calls import DatabaseCalls
+from utils.db_calls import DatabaseCalls
 from dotenv import load_dotenv
 import transformers
 import torch
@@ -8,7 +8,7 @@ import os
 
 class Respond():
     def __init__(self) -> None:
-        load_dotenv('config.env')
+        load_dotenv('config/config.env')
 
         # Access  key
         self.model_name = os.getenv('model_name')

@@ -4,7 +4,6 @@ from TTS.api import TTS
 import soundfile as sf
 import speech_recognition as sr
 import torch
-import subprocess
 
 
 class Speech():

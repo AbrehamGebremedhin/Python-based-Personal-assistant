@@ -1,4 +1,4 @@
-from telegram_handle import handler
+from handlers.telegram_handle import handler
 import spacy
 
 # Load the spaCy model

@@ -1,14 +1,14 @@
 import requests
 import os
 import spacy
-from datetime import datetime, timedelta
+from utils.utils import named_entity
 from dotenv import load_dotenv
 
 
 class API():
     def __init__(self):
         # Load variables from the .env file
-        load_dotenv('config.env')
+        load_dotenv('config/config.env')
         # Load the spaCy model
         self.nlp = spacy.load("en_core_web_sm")
 

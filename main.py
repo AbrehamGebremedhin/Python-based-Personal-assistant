@@ -1,10 +1,10 @@
-from intent import classify_intent
-from speech import Speech
-from api_calls import API
-from browser_handler import Browse
-from db_calls import DatabaseCalls
-from chat import Respond
-from system_handle import handle_speaker
+from utils.intent import classify_intent
+from utils.speech import Speech
+from handlers.api_calls import API
+from handlers.browser_handler import Browse
+from utils.db_calls import DatabaseCalls
+from handlers.chat import Respond
+from handlers.system_handle import handle_speaker
 import speech_recognition as sr
 import datetime
 import sys
@@ -48,12 +48,8 @@ def process_command(command):
     elif "message" in command:
         db.insert_one(
             {"input": command, "intent": "send_telegram_message"})
-        from message import prepare_message
+        from utils.message import prepare_message
         prepare_message(speech, text=command)
-    elif "summarize" in command:
-        db.insert_one({"input": command, "intent": "summarize"})
-        from summarizer import summarize
-        speech.speak(summarize(filename=command))
     elif label == "audio_volume_mute":
         db.insert_one(
             {"input": command, "intent": "mute_speaker"})

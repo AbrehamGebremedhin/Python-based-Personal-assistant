@@ -9,7 +9,7 @@ tracemalloc.start()
 class handler():
     def __init__(self) -> None:
         # Load variables from the .env file
-        load_dotenv('config.env')
+        load_dotenv('config/config.env')
 
         # Access  key
         api_id = os.getenv('api_id')
