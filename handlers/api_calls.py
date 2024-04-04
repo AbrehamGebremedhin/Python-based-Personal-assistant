@@ -13,20 +13,10 @@ class API():
         self.nlp = spacy.load("en_core_web_sm")
 
     def get_movie(self, title):
-        doc = self.nlp(title)
-        tokens = ["movie", "series", "anime"]
-        result = []
-
-        for token in tokens:
-            # Find the index of the token
-            token_index = next(
-                (i for i, t in enumerate(doc) if t.text == token), -1)
-
-            if token_index != -1 and token_index < len(doc) - 1:
-                # Extract all strings after the token
-                result += [token.text for token in doc[token_index + 1:]]
-
-        movie_title = ' '.join(result)
+        entities = named_entity(title, ['movie title'])
+        for entity in entities:
+            if entity['label'] == 'movie title':
+                movie_title = entity['text']
 
         movie_key = os.getenv('movie_api_key')
         url = f"http://www.omdbapi.com/?apikey={movie_key}&t={movie_title}"
@@ -53,21 +43,10 @@ class API():
         url = f'https://ipinfo.io/json?token={location_key}'
         response = requests.get(url)
         data = response.json()
-        tokens = ['in']
-        doc = self.nlp(input)
-        location = ''
-
-        for token in tokens:
-            result = []
-            # Find the index of the token
-            token_index = next(
-                (i for i, t in enumerate(doc) if t.text == token), -1)
-
-            if token_index != -1 and token_index < len(doc) - 1:
-                # Extract all strings after the token
-                result += [token.text for token in doc[token_index + 1:]]
-
-                location = ' '.join(result)
+        entities = named_entity(input, ['place'])
+        for entity in entities:
+            if entity['label'] == 'place':
+                location = entity['text']
 
             else:
                 location = data['city']
