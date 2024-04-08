@@ -13,10 +13,10 @@ import sys
 recognizer = sr.Recognizer()
 
 # initialize API, Speech, Browse class
-api = API()
 speech = Speech()
 browse = Browse()
 respond = Respond()
+api = API(respond)
 db = DatabaseCalls("intent")
 
 
